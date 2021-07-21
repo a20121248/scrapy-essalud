@@ -24,10 +24,10 @@ class ConsultaAcreditacionSpider(scrapy.Spider):
 
         # INPUT
         dtype = {'DNI': str}
-        self.data_df = pd.read_csv(self.in_path+self.filename, sep='\t', usecols=['DNI'], dtype=dtype, encoding='utf8')
-        
+        self.input_df = pd.read_csv(self.in_path+self.filename, sep='\t', usecols=['DNI'], dtype=dtype, encoding='utf8')
+
     def start_requests(self):
-        for row_idx, row in self.data_df.iterrows():
+        for row_idx, row in self.input_df.iterrows():
             meta = {
                 'dni': row['DNI'],
                 'cookiejar': row_idx + 1

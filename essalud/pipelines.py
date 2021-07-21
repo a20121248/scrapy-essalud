@@ -26,8 +26,9 @@ class csvWriterPipeline(object):
         return item
 
     def guarda_data(self, lista_df, ctd_items=0):
-        pd.concat(lista_df).to_csv(self.prename_infogeneral, sep='\t', header=ctd_items<=self.ctd_save_infogeneral, index=False, encoding="utf-8", columns=self.columnsPrincipal, mode='a')
-        return [pd.DataFrame(columns = self.columnsPrincipal)]
+        if len(lista_df)>0:
+            pd.concat(lista_df).to_csv(self.prename_infogeneral, sep='\t', header=ctd_items<=self.ctd_save_infogeneral, index=False, encoding="utf-8", columns=self.columnsPrincipal, mode='a')
+        return []
 
     def __del__(self):
         self.guarda_data(self.data_encontrada_infogeneral, self.items_written_infogeneral)
